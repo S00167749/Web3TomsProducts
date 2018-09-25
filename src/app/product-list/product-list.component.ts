@@ -12,11 +12,33 @@ export class ProductListComponent implements OnInit {
         console.log('In OnInit');
     }
 
+    constructor(){
+        this.filterProducts = this.products;
+    }
+
   pageTitle : string = "Toms's Products";
   imgageWidth : number = 50;
   imageMargin : number = 2;
   showImage : boolean = false;
-  listFilter : string = 'Cart';
+  
+  filterProducts : IProduct[];
+  _listFilter : string;
+
+    get listFilter() : string {
+        return this._listFilter;
+    }
+    set listFilter(value : string) {
+        console.log(value);
+        this._listFilter = value;
+        this.filterProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
+    }
+
+    performFilter(filterBy : string) : IProduct[]{
+        filterBy = filterBy.toLocaleLowerCase();
+        return this.products.filter((product : IProduct) =>
+            product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
+    }
+
 
   toggleImage() : void {
     this.showImage = !this.showImage;
