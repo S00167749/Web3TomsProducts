@@ -28,7 +28,7 @@ library.add(faStar);
     FormsModule,
     HttpModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
