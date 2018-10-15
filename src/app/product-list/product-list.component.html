@@ -22,18 +22,20 @@
                         <th>Available</th>
                         <th>Price</th>
                         <th>5 Star Rating</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor='let product of filterProducts'>
                         <td><img *ngIf='showImage'
-                            [src]='product.imageUrl' [title]='product.productName | uppercase' [style.width.px]='imgageWidth'
+                            [src]='product.imageUrl' [title]='product.productName' [style.width.px]='imgageWidth'
                             [style.margin.px]='imageMargin'></td>
                         <td>{{ product.productName }}</td>
-                        <td>{{ product.productCode | convertToSpaces:'-' | lowercase}}</td>
+                        <td>{{ product.productCode }}</td>
                         <td>{{ product.releaseDate }}</td>
                         <td>{{ product.price | currency: 'EUR':'symbol':'1.2-2' }}</td>
-                        <td><!--<app-star-rating [rating] = 'product.starRating' (notify)='onNotify($event)'></app-star-rating>--></td>
+                        <td><app-star-rating [rating] = 'product.starRating' (notify)='onNotify($event)'></app-star-rating></td>
+                        <td><button id="remove" class="btn" (click)="deleteProduct(product.id)"><i class="fa fa-trash"></i>Trash</button></td>
                     </tr>
                 </tbody>
             </table>

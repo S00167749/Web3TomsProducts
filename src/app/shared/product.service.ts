@@ -3,7 +3,7 @@ import { IProduct } from '../IProduct';
 import { Observable } from 'rxjs';
 import { HttpErrorResponse,HttpClient } from '@angular/common/http';
 //import 'rxjs/add/observable/throw';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, map } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Injectable({
@@ -32,9 +32,15 @@ export class ProductService {
      // ,catchError(this.handleError));
 
 
-     this.products = this.productsCollection.valueChanges();
-
-     this.products.subscribe(data => console.log("getProducts" + data));
+     this.products = this.productsCollection.snapshotChanges().pipe(
+       map(actions => actions.map(a => {
+         const data = a.payload.doc.data() as IProduct;
+         console.log("GetProducts : data " + JSON.stringify(data));
+         const id = a.payload.doc.id;
+         console.log("getProducts.id = "+id );
+         return { id, ...data };
+       }))
+     );
      return this.products;
      
   }
@@ -59,5 +65,11 @@ export class ProductService {
       },
       error => (this.errorMessage = <any>error)
     );
+  }
+
+  deleteProduct(id:string): void {
+    this.productsCollection.doc(id).delete()
+    .catch(error => {console.log("deleteProduct error: "+error)})
+    .then(() => console.log("deleteProduct: id = "+id));
   }
 }

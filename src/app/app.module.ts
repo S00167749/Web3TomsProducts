@@ -5,9 +5,9 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
-//import { library } from '@fortawesome/fontawesome-svg-core';
-//import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-//import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 
 import { AppComponent } from './app.component';
@@ -19,10 +19,10 @@ import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 
-//library.add(faStar);
+library.add(faStar);
 
 const routes : Routes = [
-  {path: "", pathMatch: "full", redirectTo: "home"},
+  {path: "a", pathMatch: "full", redirectTo: "/home"},
   {path: "home", component: ProductListComponent}
  // {path: "add-product", component: AddProductComponent}
 ];
@@ -38,7 +38,7 @@ const routes : Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    //FontAwesomeModule,
+    FontAwesomeModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase,),
     AngularFirestoreModule,
