@@ -18,13 +18,15 @@ import { StarRatingComponent } from './shared/star-rating/star-rating.component'
 import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
+import { NavigationComponent } from './navigation/navigation.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 library.add(faStar);
 
 const routes : Routes = [
-  {path: "a", pathMatch: "full", redirectTo: "/home"},
-  {path: "home", component: ProductListComponent}
- // {path: "add-product", component: AddProductComponent}
+  {path: "", pathMatch: "full", redirectTo: "/home"},
+  {path: "home", component: ProductListComponent},
+  {path: "add-product", component: AddProductComponent}
 ];
 
 @NgModule({
@@ -32,7 +34,9 @@ const routes : Routes = [
     AppComponent,
     ProductListComponent,
     ConvertToSpaces,
-    StarRatingComponent
+    StarRatingComponent,
+    NavigationComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
