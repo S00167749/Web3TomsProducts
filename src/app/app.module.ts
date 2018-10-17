@@ -20,6 +20,8 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { NavigationComponent } from './navigation/navigation.component';
 import { AddProductComponent } from './add-product/add-product.component';
+import { MatToolbar } from '@angular/material';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 library.add(faStar);
 
@@ -46,6 +48,7 @@ const routes : Routes = [
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase,),
     AngularFirestoreModule,
+    MatToolbarModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],

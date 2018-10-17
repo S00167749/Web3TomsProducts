@@ -1,7 +1,4 @@
 <div class='card'>
-    <h3 class='card-header bg-primary text-white'>
-        {{pageTitle}}
-    </h3>
     <div class='card-body'>
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Filter by:" aria-label="Filter by:" aria-describedby="basic-addon1"
@@ -31,7 +28,7 @@
                             [src]='product.imageUrl' [title]='product.productName' [style.width.px]='imgageWidth'
                             [style.margin.px]='imageMargin'></td>
                         <td>{{ product.productName }}</td>
-                        <td>{{ product.productCode }}</td>
+                        <td>{{ product.productCode | convertToSpaces:'-'}}</td>
                         <td>{{ product.releaseDate }}</td>
                         <td>{{ product.price | currency: 'EUR':'symbol':'1.2-2' }}</td>
                         <td><app-star-rating [rating] = 'product.starRating' (notify)='onNotify($event)'></app-star-rating></td>
