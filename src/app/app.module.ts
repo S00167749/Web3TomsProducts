@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
@@ -17,18 +17,32 @@ import { StarRatingComponent } from './shared/star-rating/star-rating.component'
 
 import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { NavigationComponent } from './navigation/navigation.component';
 import { AddProductComponent } from './add-product/add-product.component';
-import { MatToolbar } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule,
+   MatMenuModule, MatIconModule , MatListModule} from '@angular/material';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+
+import { AuthGuard } from './service/auth.guard';
+import { AuthService } from './service/auth.service';
+import { NotificationService } from './service/notification.service';
 
 library.add(faStar);
 
 const routes : Routes = [
-  {path: "", pathMatch: "full", redirectTo: "/home"},
-  {path: "home", component: ProductListComponent},
-  {path: "add-product", component: AddProductComponent}
+  {path: '', redirectTo: "login", pathMatch: 'full',canActivate: [AuthGuard]},
+  {path: 'product-list', component: ProductListComponent, canActivate: [AuthGuard]},
+  {path: 'home', component: ProductListComponent, canActivate: [AuthGuard]},
+  {path: 'add-product', component: AddProductComponent, canActivate: [AuthGuard]},
+  {path: 'login', component: LoginComponent},
+  {path: 'signup', component: SignupComponent},
+  {path: '**', redirectTo: 'login',  canActivate: [AuthGuard]}
 ];
 
 @NgModule({
@@ -38,20 +52,33 @@ const routes : Routes = [
     ConvertToSpaces,
     StarRatingComponent,
     NavigationComponent,
-    AddProductComponent
+    AddProductComponent,
+    LoginComponent,
+    SignupComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     FontAwesomeModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase,),
     AngularFirestoreModule,
     MatToolbarModule,
+    MatButtonModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatListModule,
+    MatInputModule,
+    AngularFireAuthModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard, NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

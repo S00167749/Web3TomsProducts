@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../service/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -7,12 +9,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
+  title: string = "Toms Products";
 
-  constructor() { }
+  isLoggedIn: boolean;
 
-  ngOnInit() {
+  constructor(private auth: AuthService, private myRoute: Router) { }
+
+  userLoggedIn(): boolean {
+    this.isLoggedIn = this.auth.isLoggedIn();
+    return this.isLoggedIn;
   }
 
-  pageTitle : string = "Toms's Products";
+  onLogout() {
+    this.auth.doLogout();
+    this.isLoggedIn = this.auth.isLoggedIn();
+    this.myRoute.navigate(['login']);
+  }
+
+  ngOnInit() {
+    this.isLoggedIn = this.auth.isLoggedIn();
+  }
 
 }
