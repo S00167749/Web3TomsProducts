@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -13,7 +15,9 @@ export class SignupComponent implements OnInit {
   name: string;
   description: string;
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService) {
+   
+   }
 
   ngOnInit() {
   }

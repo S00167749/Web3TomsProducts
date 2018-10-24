@@ -32,6 +32,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { AuthGuard } from './service/auth.guard';
 import { AuthService } from './service/auth.service';
 import { NotificationService } from './service/notification.service';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 library.add(faStar);
 
@@ -78,7 +79,7 @@ const routes : Routes = [
     AngularFireAuthModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthService, AuthGuard, NotificationService],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},AuthService, AuthGuard, NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
