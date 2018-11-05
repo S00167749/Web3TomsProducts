@@ -22,7 +22,7 @@ import { environment } from '../environments/environment';
 import { NavigationComponent } from './navigation/navigation.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule,
-   MatMenuModule, MatIconModule , MatListModule} from '@angular/material';
+   MatMenuModule, MatIconModule , MatListModule, MatProgressSpinnerModule} from '@angular/material';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
@@ -70,6 +70,7 @@ const routes : Routes = [
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
+    MatProgressSpinnerModule,
     MatMenuModule,
     MatIconModule,
     MatFormFieldModule,

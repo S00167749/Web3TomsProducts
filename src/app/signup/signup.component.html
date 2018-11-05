@@ -6,23 +6,23 @@
   </mat-card-header>
   <mat-card-content>
     <form>
-      <mat-form-field class="full-width">
-        <input [(ngModel)]="email" name="email" MatInput placeholder="email" type="email" MatFormFieldControl="email">
+      <mat-form-field>
+        <input [(ngModel)]="email" name="email" matInput placeholder="email" type="email">
       </mat-form-field>
       <br>
       <mat-form-field>
-        <input [(ngModel)]="pwd" name="password" MatInput placeholder="password" type="password" MatFormFieldControl="password">
+        <input [(ngModel)]="pwd" name="password" matInput placeholder="password" type="password" >
       </mat-form-field>
       <br>
       <mat-form-field>
-        <input [(ngModel)]="name" name="name" MatInput placeholder="name">
+        <input [(ngModel)]="name" name="name" matInput placeholder="name">
       </mat-form-field>
       <br>
       <mat-form-field style="width: 100%">
-        <textarea [(ngModel)]="description" name="description" MatInput placeholder="description" type="password"></textarea>
+        <textarea [(ngModel)]="description" name="description" matInput placeholder="description" type="password"></textarea>
       </mat-form-field>
       <br>
-      <button (click)="register()" mat-rasied-button color="primary">Register</button>
+      <button (click)="register()" mat-raised-button color="primary">Register</button>
     </form>
   </mat-card-content>
 </mat-card>
