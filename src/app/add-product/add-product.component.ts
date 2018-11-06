@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from '../IProduct';
 import { ProductService } from '../shared/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -17,11 +18,23 @@ export class AddProductComponent implements OnInit {
   price : number;
   starRating : number;
   imageUrl : string;
+  showDisplayClipartComponent: boolean;
 
-  constructor(private _productService : ProductService) { }
+  constructor(private _productService : ProductService, private router: Router) { }
 
   ngOnInit() {
   }
+
+  addImageStringToFormTextBox(evt): boolean{
+    this.imageUrl = evt;
+    return false;
+  }
+
+  showHideDisplayClipartComponent(): boolean{
+    this.showDisplayClipartComponent = !this.showDisplayClipartComponent;
+    return false;
+  }
+    
 
   addProduct() : void {
     console.log(this.productId);
@@ -45,5 +58,7 @@ export class AddProductComponent implements OnInit {
     };
     
     this._productService.addProduct(product);
+
+    this.router.navigate(['product-list']);
   }
 }

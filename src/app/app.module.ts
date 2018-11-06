@@ -8,7 +8,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './product-list/product-list.component';
@@ -33,8 +34,12 @@ import { AuthGuard } from './service/auth.guard';
 import { AuthService } from './service/auth.service';
 import { NotificationService } from './service/notification.service';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { DisplayClipartComponent } from './display-clipart/display-clipart.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 library.add(faStar);
+library.add(faCoffee);
+library.add(faTrashAlt);
 
 const routes : Routes = [
   {path: '', redirectTo: "login", pathMatch: 'full',canActivate: [AuthGuard]},
@@ -56,7 +61,8 @@ const routes : Routes = [
     AddProductComponent,
     LoginComponent,
     SignupComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    DisplayClipartComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +84,7 @@ const routes : Routes = [
     MatListModule,
     MatInputModule,
     AngularFireAuthModule,
+    FlexLayoutModule,
     RouterModule.forRoot(routes)
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},AuthService, AuthGuard, NotificationService],
