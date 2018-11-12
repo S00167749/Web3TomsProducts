@@ -9,10 +9,11 @@ export class ClipartService {
 
   url: string = "https://openclipart.org/search/json/?query=";
   data: IOpenClipArt;
+  maxReturn: string ='&amount=4';
 
   constructor(private _http: HttpClient) { }
 
   getImageList(imageStr: string): Observable<IOpenClipArt>{
-    return this._http.get<IOpenClipArt>(this.url+imageStr);
+    return this._http.get<IOpenClipArt>(this.url+imageStr+this.maxReturn);
   }
 }
