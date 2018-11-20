@@ -19,6 +19,7 @@ export class AddProductComponent implements OnInit {
   starRating : number;
   imageUrl : string;
   showDisplayClipartComponent: boolean;
+  imageStr: string;
 
   constructor(private _productService : ProductService, private router: Router) { }
 
