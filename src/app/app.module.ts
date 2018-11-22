@@ -91,3 +91,5 @@ const routes : Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+//npm i -g firebase-tools
